@@ -3,7 +3,7 @@ class Client {
     private int id;
     private String fullName;
 
-    Client(String fullName) {
+    private Client(String fullName) {
         this.id =++countId;
         this.fullName = fullName;
     }

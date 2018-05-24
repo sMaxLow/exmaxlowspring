@@ -1,5 +1,10 @@
-class ConsoleEventLogger {
-    void logEvent(String msg) {
-       System.out.println(msg);
+class ConsoleEventLogger implements EventLogger{
+
+    private ConsoleEventLogger() {
     }
+
+    public void logEvent(String msg) {
+        System.out.println(msg);
+    }
+
 }

@@ -1,19 +1,26 @@
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class App {
     private Client client;
     private ConsoleEventLogger eventLogger;
+
+    public App(Client client, ConsoleEventLogger eventLogger) {
+        this.client = client;
+        this.eventLogger = eventLogger;
+    }
 
     private void logEvent(String msg) {
         String messege = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
         eventLogger.logEvent(messege);
     }
     public static void main(String[] args){
-        App app = new App();
 
-       app.client = new Client( "Владимир Путин");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        App app = (App) context.getBean("app");
 
-       app.eventLogger = new ConsoleEventLogger();
-
-       app.logEvent("Жил был 1 и было у него имя 1 3, а потом сместил его 2");
+       app.logEvent("Какое то сообщение для 1");
+       app.logEvent("Какое то сообщение для 2");
 
     }
 
